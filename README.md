@@ -1,2 +1,1 @@
-# helm
-# charts
+# spicter helm charts
