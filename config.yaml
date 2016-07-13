@@ -1,0 +1,8 @@
+repos:
+  default: charts
+  tables:
+  - name: charts
+    repo: https://github.com/helm/charts
+  - name: fabric8
+    repo: https://github.com/helm/charts.git
+workspace: {}

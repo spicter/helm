@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: orientdb
+  labels:
+    provider: orientdb
+    heritage: helm
+    layer: data-services
+    project: spicter
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        provider: orientdb
+        layer: data-services
+        project: spicter
+    spec:
+      containers:
+      - name: orientdb
+        image: orientdb:latest
+        ports:
+         - containerPort: 2480
+         - containerPort: 2424
+        env:
+        - name: ORIENTDB_ROOT_PASSWORD
+          value: main5311
+        

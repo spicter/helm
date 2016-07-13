@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: mariadb
+  labels:
+    provider: mariadb
+    heritage: helm
+    layer: data
+    provisioner: spicter
+    app: mariadb
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        provider: mariadb
+    spec:
+      containers:
+      - name: mariadb
+        image: mariadb
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: main5311
+        ports:
+        - containerPort: 3306
