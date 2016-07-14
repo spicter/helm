@@ -1,0 +1,12 @@
+name: docker-registry
+from:
+  name: docker-registry
+  version: 0.2.0
+  repo: https://github.com/helm/charts.git
+home: https://github.com/docker/distribution
+version: 0.2.0
+description: The Docker toolset to pack, ship, store, and deliver content.
+maintainers:
+- Matt Fisher <mfisher@deis.com>
+details: This package provides a Docker Registry that can be used for development
+  purposes.

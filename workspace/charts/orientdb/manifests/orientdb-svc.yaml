@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: orientdb
+  labels:
+    app: orientdb
+    heritage: helm
+    layer: data-services
+    project: spicter
+spec:
+  ports:
+  - name: admin
+    port: 80
+    targetPort: 2480
+  - name: database
+    port: 2424
+    targetPort: 2424
+  selector:
+    provider: orientdb

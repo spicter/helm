@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: phpmyadmin
+  labels:
+    provider: phpmyadmin
+    heritage: helmc
+    layer: data-admin
+    provisioner: spicter
+    app: phpmyadmin
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        provider: phpmyadmin
+    spec:
+      containers:
+      - name: phpmyadmin
+        image: phpmyadmin/phpmyadmin
+        env:
+        - name: PMA_HOST
+          value: mariadb
+

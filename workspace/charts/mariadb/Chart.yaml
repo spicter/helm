@@ -1,0 +1,11 @@
+name: mariadb
+from:
+  name: mariadb
+  version: 0.2.0
+  repo: https://github.com/helm/charts.git
+home: https://www.mariadb.com/
+version: 0.2.0
+description: Chart running MariaDB.
+maintainers:
+- Matt Fisher <mfisher@deis.com>
+details: This package provides a basic MariaDB database for development purposes.
