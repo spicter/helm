@@ -19,6 +19,8 @@ spec:
 #        - name: MYSQL_ROOT_PASSWORD
 #          value: mypassword
         - name: MONGO_URL
-          value: mongodb://mongodb/wekan
+          value: mongodb://root:main5311@mongodb:27017/wekan
+        - name: ROOT_URL 
+          value: http://localhost:8008/api/v1/proxy/namespaces/default/services/wekan
         ports:
         - containerPort: 80
