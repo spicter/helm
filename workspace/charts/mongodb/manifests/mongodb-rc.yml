@@ -5,6 +5,9 @@ metadata:
   labels:
     provider: mongodb
     heritage: helm
+    layer: data
+    provisioner: spicter
+    app: mongodb
 spec:
   replicas: 1
   template:

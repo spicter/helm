@@ -3,8 +3,11 @@ kind: ReplicationController
 metadata:
   name: postgresql
   labels:
-    provider: postgresql
+    provider: postgress
     heritage: helm
+    layer: data
+    provisioner: spicter
+    app: postgress
 spec:
   replicas: 1
   template:
@@ -17,6 +20,6 @@ spec:
         image: postgres
         env:
         - name: POSTGRES_PASSWORD
-          value: mypassword
+          value: main5311
         ports:
         - containerPort: 5432
