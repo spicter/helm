@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: ldap-fusion
+  labels:
+    provider: ldap-fusion
+    heritage: helmc
+    layer: data-admin
+    provisioner: spicter
+    app: ldap-fusion
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        provider: ldap-fusion
+    spec:
+      containers:
+      - name: ldap-fusion
+        image: mcreations/fusiondirectory
+        env:
+        - name: LDAP_HOST
+          value: ldap
+        - name: LDAP_ROOT
+          value: admin
+        - name: LDAP_ROOTPW
+          value: main5311
+        - name: LDAP_DOMAIN
+          value: spicter.com
+        - name: LDAP_SERVER_URL
+          value: ldap://ldap:389

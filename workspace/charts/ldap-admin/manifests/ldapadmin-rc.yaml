@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: ldapadmin
+  labels:
+    provider: ldapadmin
+    heritage: helmc
+    layer: data-admin
+    provisioner: spicter
+    app: ldapadmin
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        provider: ldapadmin
+    spec:
+      containers:
+      - name: ldapadmin
+        image: dinkel/phpldapadmin
+        env:
+        - name: LDAP_SERVER_HOST
+          value: ldap

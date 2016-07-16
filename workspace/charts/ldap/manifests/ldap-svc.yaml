@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ldap
+  labels:
+    provider: openldap
+    heritage: helm
+    layer: data
+    provisioner: spicter
+    app: ldap
+spec:
+  ports:
+  - port: 389
+  selector:
+    provider: openldap

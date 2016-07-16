@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ldap-fusion
+  labels:
+    provider: ldap-fusion
+    heritage: helmc
+    layer: data-admin
+    provisioner: spicter
+    app: ldap-fusion
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    provider: ldap-fusion
+    

@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: ldap
+  labels:
+    provider: openldap
+    heritage: helm
+    layer: data
+    provisioner: spicter
+    app: ldap
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        provider: openldap
+    spec:
+      containers:
+      - name: openldap
+        image: mcreations/fusiondirectory-ldap
+        env:
+        - name: LDAP_ROOTPW
+          value: main5311        
+        - name: LDAP_DOMAIN
+          value: spicter.com
+        ports:
+        - containerPort: 389
