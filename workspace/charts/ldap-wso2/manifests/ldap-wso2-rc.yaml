@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: ldap-wso2
+  labels:
+    provider: ldap-wso2
+    heritage: helm
+    layer: data
+    provisioner: spicter
+    app: ldap-wso2
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        provider: ldap-wso2
+    spec:
+      containers:
+      - name: ldap-wso2
+        image: rstuven/wso2-ids
+        ports:
+        - containerPort: 9443
