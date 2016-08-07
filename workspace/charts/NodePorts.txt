@@ -1,0 +1,5 @@
+
+- kube-system:elastic-kube	30060
+- kube-system:grafana		30061
+- kube-system:kibana	    30062
+- kube-system:dashboard	    30063

@@ -8,9 +8,11 @@ metadata:
     kubernetes.io/cluster-service: "true"
     kubernetes.io/name: "Kibana"
 spec:
+  type: NodePort
   ports:
   - port: 5601
     protocol: TCP
     targetPort: ui
+    nodePort: 30062
   selector:
     k8s-app: kibana-logging
