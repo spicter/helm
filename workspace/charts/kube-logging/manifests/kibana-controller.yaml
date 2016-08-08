@@ -11,7 +11,6 @@ spec:
   replicas: 1
   selector:
     k8s-app: kibana-logging
-    version: v1
   template:
     metadata:
       labels:
