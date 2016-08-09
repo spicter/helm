@@ -25,7 +25,6 @@ spec:
     - name: varlibdockercontainers
       mountPath: /var/lib/docker/containers
       readOnly: true
-  serviceAccountName: "fluentd"
   terminationGracePeriodSeconds: 30
   volumes:
   - name: varlog
