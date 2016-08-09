@@ -1,53 +1,78 @@
-apiVersion: v1
-kind: ReplicationController
+apiVersion: "v1"
+kind: "ReplicationController"
 metadata:
-  name: es
-  namespace: kube-system
+  annotations:
+    fabric8.io/git-commit: "b9ca556d4e43076f77492a64cc4580276ecea7bc"
+    fabric8.io/git-branch: "release-v2.2.141"
+    fabric8.io/git-url: "http://gogs.release.cd.fabric8.io/gogsadmin/oss-parent/commit/b9ca556d4e43076f77492a64cc4580276ecea7bc"
+    fabric8.io/build-id: "1"
+    fabric8.io/build-url: "http://jenkins.release.cd.fabric8.io/job/oss-parent/1"
   labels:
-    component: elasticsearch
-    kubernetes.io/cluster-service: "true"
+    project: "elasticsearch"
+    provider: "fabric8"
+    version: "2.2.141"
+    group: "io.fabric8.devops.apps"
+    package: "logging"
+  name: "elasticsearch"
+  namespace: kube-system
 spec:
   replicas: 1
+  selector:
+    project: "elasticsearch"
+    provider: "fabric8"
+    version: "2.2.141"
+    group: "io.fabric8.devops.apps"
   template:
     metadata:
+      annotations: {}
       labels:
-        component: elasticsearch
+        project: "elasticsearch"
+        provider: "fabric8"
+        version: "2.2.141"
+        group: "io.fabric8.devops.apps"
+        package: "logging"
     spec:
-      serviceAccount: elasticsearch
       containers:
-      - name: es
-        securityContext:
-          capabilities:
-            add:
-              - IPC_LOCK
-        image: elasticsearch:latest
+      - args: []
+        command: []
         env:
-        - name: KUBERNETES_CA_CERTIFICATE_FILE
-          value: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-        - name: NAMESPACE
+        - name: "SERVICE"
+          value: "elasticsearch-masters"
+        - name: "KUBERNETES_NAMESPACE"
           valueFrom:
             fieldRef:
-              fieldPath: metadata.namespace
-        - name: "CLUSTER_NAME"
-          value: "myesdb"
-        - name: "DISCOVERY_SERVICE"
-          value: "elasticsearch"
-        - name: NODE_MASTER
-          value: "true"
-        - name: NODE_DATA
-          value: "true"
-        - name: HTTP_ENABLE
-          value: "true"
+              fieldPath: "metadata.namespace"
+        image: "fabric8/elasticsearch-k8s:2.2.1"
+        livenessProbe:
+          initialDelaySeconds: 60
+          tcpSocket:
+            port: 9300
+        name: "elasticsearch"
         ports:
         - containerPort: 9200
-          name: http
-          protocol: TCP
+          name: "http"
         - containerPort: 9300
-          name: transport
-          protocol: TCP
+          name: "transport"
+        readinessProbe:
+          httpGet:
+            path: "/_template/logstash"
+            port: 9200
+          initialDelaySeconds: 5
+        securityContext: {}
         volumeMounts:
-        - mountPath: /data
-          name: storage
+        - mountPath: "/usr/share/elasticsearch/data"
+          name: "elasticsearch-data"
+          readOnly: false
+      - args: []
+        command: []
+        env: []
+        image: "fabric8/elasticsearch-logstash-template:2.2.141"
+        name: "logstash-template"
+        ports: []
+        volumeMounts: []
+      imagePullSecrets: []
+      nodeSelector: {}
       volumes:
-      - name: storage
-        emptyDir: {}
+      - emptyDir:
+          medium: ""
+        name: "elasticsearch-data"

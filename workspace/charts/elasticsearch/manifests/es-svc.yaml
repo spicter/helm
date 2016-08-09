@@ -1,17 +1,25 @@
-apiVersion: v1
-kind: Service
+apiVersion: "v1"
+kind: "Service"
 metadata:
-  name: elasticsearch
-  namespace: kube-system
+  annotations: {}
   labels:
-    component: elasticsearch
-    kubernetes.io/cluster-service: "true"
-    kubernetes.io/name: "Elasticsearch"
+    project: "elasticsearch"
+    provider: "fabric8"
+    version: "2.2.141"
+    group: "io.fabric8.devops.apps"
+    package: "logging"
+  name: "elasticsearch"
+  namespace: kube-system
 spec:
-  selector:
-    component: elasticsearch
+  deprecatedPublicIPs: []
+  externalIPs: []
   ports:
-  - port: 80
-    protocol: TCP
+  - port: 9200
+    protocol: "TCP"
     targetPort: 9200
-    
+    nodePort: 30064
+  selector:
+    project: "elasticsearch"
+    provider: "fabric8"
+    group: "io.fabric8.devops.apps"
+  type: "NodePort"
