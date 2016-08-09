@@ -6,10 +6,17 @@ metadata:
 spec:
   containers:
   - name: fluentd-elasticsearch
-    image: gcr.io/google_containers/fluentd-elasticsearch:1.13
+    image: fabric8/fluentd-kubernetes:v1.11
+    env:
+      - name: "ELASTICSEARCH_HOST"
+        value: "elasticsearch"
+      - name: "ELASTICSEARCH_PORT"
+        value: "80"
     resources:
       limits:
         cpu: 100m
+    securityContext:
+      privileged: true
     args:
     - -q
     volumeMounts:
@@ -18,6 +25,7 @@ spec:
     - name: varlibdockercontainers
       mountPath: /var/lib/docker/containers
       readOnly: true
+  serviceAccountName: "fluentd"
   terminationGracePeriodSeconds: 30
   volumes:
   - name: varlog
