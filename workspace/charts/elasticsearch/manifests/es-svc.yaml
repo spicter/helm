@@ -9,7 +9,7 @@ metadata:
     group: "io.fabric8.devops.apps"
     package: "logging"
   name: "elasticsearch"
-  namespace: kube-system
+  namespace: default
 spec:
   deprecatedPublicIPs: []
   externalIPs: []
