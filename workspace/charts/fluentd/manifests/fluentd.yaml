@@ -25,7 +25,7 @@ spec:
           value: "elasticsearch"
         - name: "ELASTICSEARCH_PORT"
           value: "9200"
-        image: "fabric8/fluentd-kubernetes"
+        image: "fabric8/fluentd-kubernetes:v1.12"
         name: "fluentd"
         ports: []
         resources:
