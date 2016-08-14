@@ -8,6 +8,7 @@ metadata:
     provider: "fabric8"
     version: "2.2.141"
   name: "fluentd"
+  namespace: kube-system
 spec:
   template:
     metadata:
@@ -22,7 +23,7 @@ spec:
         command: []
         env:
         - name: "ELASTICSEARCH_HOST"
-          value: "elasticsearch"
+          value: "elasticsearch-logging"
         - name: "ELASTICSEARCH_PORT"
           value: "9200"
         image: "fabric8/fluentd-kubernetes:v1.12"
@@ -31,8 +32,8 @@ spec:
         resources:
           limits:
             cpu: "100m"
-        securityContext:
-          privileged: true
+#        securityContext:
+#          privileged: true
         volumeMounts:
         - mountPath: "/var/log"
           name: "varlog"

@@ -14,7 +14,7 @@ metadata:
     group: "io.fabric8.devops.apps"
     package: "logging"
   name: "elasticsearch"
-  namespace: default
+  namespace: kube-system
 spec:
   replicas: 1
   selector:

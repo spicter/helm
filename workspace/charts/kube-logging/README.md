@@ -1,7 +1,3 @@
-# kube-logging
+this is the logging from fabric8 distro.
 
-Describe your chart here. Link to upstream repositories, Docker images or any
-external documentation.
-
-If your application requires any specific configuration like Secrets, you may
-include that information here.
+see kube-k8s-logging for the kubernetes distro
