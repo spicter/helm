@@ -21,13 +21,13 @@
         "containers": [
           {
             "name": "fluentd-elasticsearch",
-            "image": "falkonry/fluentd-elastic",
-            "env": [
-              {
-                "name": ELASTIC_HOST,
-                "value": elasticsearch-logging
-              }
-            ],
+            "image": "gcr.io/google_containers/fluentd-elasticsearch:1.15",
+#            "env": [
+#              {
+#                "name": ELASTIC_HOST,
+#                "value": elasticsearch-logging
+#              }
+#            ],
             "resources": {
               "limits": {
                 "memory": "200Mi"
